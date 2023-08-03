@@ -1,0 +1,33 @@
+filename: "TSS_form.xlsx"
+sheet: "Sheet1"
+header: "CBU"
+validators:
+    columns:
+        A:
+            - NotBlank:
+              message: Value can not be blank
+
+            - Choice:
+                choices: [5000, 8110]
+                message: Value should be 5000, 8110
+
+        B:
+            - NotBlank:
+              message: Value can not be blank
+
+            - Type:
+                type: integer
+                message: Value should be integer
+                trim: true
+
+        D:
+            - NotBlank:
+              message: Value can not be blank
+
+            - Choice:
+                choices: ['без TSS', 'с TSS', 'TSS Telesale']
+                message: Value should be 'без TSS', 'с TSS'
+transforms:
+    - DeleteDuplicatesByKeys:
+        keys: ['CBU', 'SALES_REP']
+        keep: False
